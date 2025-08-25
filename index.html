@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Party</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> 🍔 Burger Party</h1>
+        <nav>
+            <button id="cart-btn">🛒 Cart <span id="cart-count">0</span></button>
+        </nav>
+    </header>
+    <main>
+        <section id="menu">
+            <h1>Party Burgers</h1>
+            <div id="menu-items">
+            
+            </div>
+        </section>
+        <section  id="cart-modal" class="hidden">
+            <h2>Your Party Cart</h2>
+            <div id="cart-items">
+
+            </div>
+            <p id="cart-total">
+                Total: Rs 0
+            </p>
+            <button id="checkout-btn">Checkout</button>
+        </section>
+    </main>
+
+    <section id="checkout" class="hidden">
+        <h2>Checkout</h2>
+        <form action="#" id="checkout-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" required>
+            <label for="address">Address:</label>
+            <textarea id="address" required></textarea>
+            <label for="payment">Payment Method:</label>
+            <select id="payment">
+                <option value="cod">Cash On delivery</option>
+                <option value="card">Card</option>
+            </select>
+            <button type="submit">Place Order</button>
+        </form>
+    </section>
+    <section id="order-confirmation" class="hidden">
+        <h2>Thank you!</h2>
+        <p>Your order has been placed successfully.</p>
+        <p id="order-id"></p>
+    </section>
+    
+    <script src="./script.js"></script>
+</body>
+</html>
