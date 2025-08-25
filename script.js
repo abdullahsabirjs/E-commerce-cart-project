@@ -36,3 +36,15 @@ function renderMenu(){
  
 renderMenu();
 
+function addToCart(id) {
+  const item = menu.find(burger => burger.id === id);
+  const existing = cart.find(burger => burger.id === id);
+
+  if (existing) {
+    existing.qty += 1;   } 
+    else {
+    cart.push({ ...item, qty: 1 });
+  }
+
+  updateCart();
+}
