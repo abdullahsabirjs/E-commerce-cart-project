@@ -1,60 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger Party</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Burger Party — Order Online</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <header>
-        <h1> 🍔 Burger Party</h1>
-        <nav>
-            <button id="cart-btn">🛒 Cart <span id="cart-count">0</span></button>
-        </nav>
-    </header>
-    <main>
-        <section id="menu">
-            <h1>Party Burgers</h1>
-            <div id="menu-items">
-            
-            </div>
-        </section>
-        <section  id="cart-modal" class="hidden">
-            <h2>Your Party Cart</h2>
-            <div id="cart-items">
+        <div class="brand" onclick="showPage('home')">
+          <h1>Burger Party</h1>
+          <small>Fresh • Fast • Tasty</small>
+        </div>
+      
+        <button id="menu-toggle" class="menu-toggle">☰</button> <!-- mobile hamburger -->
+      
+        <div class="header-controls">
+          <div class="search-wrap">
+            <input id="search-input" type="search" placeholder="Search burgers, fries..." />
+          </div>
+      
+          <div class="nav-buttons" id="nav-links">
+            <button class="ghost" onclick="showPage('home')">Home</button>
+            <button class="ghost" onclick="showPage('menu')">Menu</button>
+            <button class="ghost" onclick="showPage('contact')">Contact</button>
+            <button class="ghost" onclick="showPage('about')">About</button>
+          </div>
+      
+          <div class="right-controls">
+            <button id="cart-btn" aria-label="Open cart">🛒 <span id="cart-count">0</span></button>
+          </div>
+        </div>
+      </header>
+      
 
-            </div>
-            <p id="cart-total">
-                Total: Rs 0
-            </p>
-            <button id="checkout-btn">Checkout</button>
-        </section>
-    </main>
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page-section">
+      <div class="hero">
+        <div class="hero-content">
+          <h2>Welcome to Burger Party</h2>
+          <p>Real patties, secret sauces and happy customers since day one.</p>
+          <div class="hero-ctas">
+            <button class="primary" onclick="showPage('menu')">Order Now</button>
+            <button class="ghost" onclick="showPage('menu')">See Menu</button>
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true"></div>
+      </div>
 
-    <section id="checkout" class="hidden">
-        <h2>Checkout</h2>
-        <form action="#" id="checkout-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" required>
-            <label for="address">Address:</label>
-            <textarea id="address" required></textarea>
-            <label for="payment">Payment Method:</label>
-            <select id="payment">
-                <option value="cod">Cash On delivery</option>
-                <option value="card">Card</option>
-            </select>
-            <button type="submit">Place Order</button>
-        </form>
+      <div class="featured">
+        <h3>Top Picks</h3>
+        <div id="featured-items" class="grid-small"></div>
+      </div>
     </section>
-    <section id="order-confirmation" class="hidden">
-        <h2>Thank you!</h2>
-        <p>Your order has been placed successfully.</p>
-        <p id="order-id"></p>
+
+    <!-- MENU -->
+    <section id="menu" class="page-section hidden">
+      <h1>Our Menu</h1>
+
+      <div class="filters">
+        <div class="tabs">
+          <button class="tab active" data-cat="all">All</button>
+          <button class="tab" data-cat="burger">Burgers</button>
+          <button class="tab" data-cat="sides">Sides</button>
+          <button class="tab" data-cat="drinks">Drinks</button>
+          <button class="tab" data-cat="deals">Deals</button>
+        </div>
+        <div class="sort">
+          <label>Sort:</label>
+          <select id="sort-select">
+            <option value="default">Recommended</option>
+            <option value="price-asc">Price — Low to High</option>
+            <option value="price-desc">Price — High to Low</option>
+            <option value="rating-desc">Rating — High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="menu-items" class="menu-grid"></div>
     </section>
-    
-    <script src="./script.js"></script>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page-section hidden">
+      <h1>Contact Us</h1>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Visit Us</h3>
+          <p>123 Food Street, Karachi</p>
+          <p>Open: 10:00 AM — 11:00 PM</p>
+        </div>
+        <div class="contact-card">
+          <h3>Call / WhatsApp</h3>
+          <p>+92 300 1234567</p>
+          <p>Orders & Support</p>
+        </div>
+        <div class="contact-card">
+          <h3>Send Message</h3>
+          <form id="contact-form">
+            <input type="text" id="cname" placeholder="Your name" required />
+            <input type="email" id="cemail" placeholder="Email" required />
+            <textarea id="cmsg" placeholder="Message..." required></textarea>
+            <button type="submit" class="primary small">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-section hidden">
+      <h1>About Burger Party</h1>
+      <div class="about-grid">
+        <div>
+          <h3>Our Story</h3>
+          <p>We started with a simple mission — make burgers that taste like home. Fresh ingredients, honest prices, friendly service.</p>
+        </div>
+        <div>
+          <h3>Why Choose Us?</h3>
+          <ul>
+            <li>Locally sourced ingredients</li>
+            <li>Fast delivery & great packaging</li>
+            <li>Special family deals</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Sidebar -->
+  <aside id="cart-sidebar" class="hidden">
+    <div class="cart-top">
+      <h2>Your Cart</h2>
+      <button id="close-cart">✕</button>
+    </div>
+    <div id="cart-items" class="cart-list"></div>
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal</span><span id="cart-subtotal">Rs 0</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery</span><span id="cart-delivery">Rs 60</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span><span id="cart-total">Rs 0</span>
+      </div>
+      <div class="cart-actions">
+        <button id="checkout-btn" class="primary">Checkout</button>
+        <button id="clear-cart" class="ghost">Clear</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- overlay -->
+  <div id="overlay" class="hidden"></div>
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close">✕</button>
+      <h2>Checkout</h2>
+      <form id="checkout-form">
+        <input id="name" type="text" placeholder="Full name" required />
+        <input id="phone" type="tel" placeholder="Phone number" required />
+        <textarea id="address" placeholder="Delivery address" required></textarea>
+        <label>Payment</label>
+        <div class="payment-options">
+          <label><input type="radio" name="pay" value="cod" checked /> Cash on Delivery</label>
+          <label><input type="radio" name="pay" value="card" /> Card (demo)</label>
+        </div>
+        <button type="submit" class="primary">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div id="order-modal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Order Placed 🎉</h2>
+      <p id="order-msg">Thank you! Your order is on the way.</p>
+      <p id="order-id"></p>
+      <button class="primary" onclick="closeOrderModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
